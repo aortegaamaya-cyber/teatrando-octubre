@@ -136,7 +136,7 @@ const buildResenasOctubre = () => [
 {id:"ro_40",semana:5,obra:"Noviembre en el radar, estrenos que vienen después de octubre",titulo:"Lo que sigue después del mes más intenso del año"},
 ];
 
-const BRIEFING_OCT = `📌 LÍNEA EDITORIAL OCTUBRE 2026
+const BRIEFING_OCT = "📌 LINEA EDITORIAL OCTUBRE 2026
 
 Octubre es el mes más intenso del año para el teatro de CDMX. El eje central es Día de Muertos — no como un tema puntual del 2 de noviembre, sino como un eje que atraviesa todo el mes desde el día 1.
 
