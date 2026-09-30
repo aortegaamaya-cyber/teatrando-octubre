@@ -136,20 +136,28 @@ const buildResenasOctubre = () => [
 {id:"ro_40",semana:5,obra:"Noviembre en el radar, estrenos que vienen después de octubre",titulo:"Lo que sigue después del mes más intenso del año"},
 ];
 
-const BRIEFING_OCT = "📌 LINEA EDITORIAL OCTUBRE 2026
+const BRIEFING_OCT = "📌 LINEA EDITORIAL OCTUBRE 2026\n\nOctubre es el mes más intenso del año para el teatro de CDMX. El eje central es Día de Muertos — no como un tema puntual del 2 de noviembre, sino como un eje que atraviesa todo el mes desde el día 1.\n\nLa comunicación habla de terror, celebración de la muerte, tradición mexicana y el escenario como el formato más aterrador que existe. Las calaveritas de personajes icónicos — Frida Kahlo, Tin Tan, El Indio Fernández, La Tigresa y Pedro Infante — son el sello editorial del mes.\n\nEJES DEL MES:\n· Día de Muertos — eje principal, todo el mes\n· Terror en el teatro — obras de suspenso y horror en cartelera\n· Calaveritas — una por semana, S1 Frida, S2 Tin Tan, S3 El Indio, S4 La Tigresa, S5 Pedro Infante\n· Por teatro — guías por recinto: Foro Roldán, Teatro Xola, Foro Shakespeare, Foro Coapa, Foro Stelaris\n· Productores pendientes de septiembre — S2 y S4\n· Posts de pauta — Carrusel $375 y Las 8 favoritas de terror";
 
-Octubre es el mes más intenso del año para el teatro de CDMX. El eje central es Día de Muertos — no como un tema puntual del 2 de noviembre, sino como un eje que atraviesa todo el mes desde el día 1.
 
-La comunicación habla de terror, celebración de la muerte, tradición mexicana y el escenario como el formato más aterrador que existe. Las calaveritas de personajes icónicos — Frida Kahlo, Tin Tan, El Indio Fernández, La Tigresa y Pedro Infante — son el sello editorial del mes.
+const POLL_INTERVAL = 4000;
 
-EJES DEL MES:
-· Día de Muertos — eje principal, todo el mes
-· Terror en el teatro — obras de suspenso y horror en cartelera
-· Calaveritas — una por semana, S1 Frida, S2 Tin Tan, S3 El Indio, S4 La Tigresa, S5 Pedro Infante
-· Por teatro — guías por recinto: Foro Roldán, Teatro Xola, Foro Shakespeare, Foro Coapa, Foro Stelaris
-· Productores pendientes de septiembre — S2 y S4
-· Posts de pauta — Carrusel $375 y Las 8 favoritas de terror`;
-
+async function saveData(data) {
+  try {
+    const res = await fetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({data:JSON.stringify(data)})});
+    return res.ok;
+  } catch(e) { return false; }
+}
+async function loadData() {
+  try {
+    const res = await fetch('/api/data');
+    const json = await res.json();
+    if (json.data) return typeof json.data === 'string' ? JSON.parse(json.data) : json.data;
+  } catch(e) {}
+  return null;
+}
+async function generarCopyIA(item) {
+  throw new Error('Generación IA no disponible en esta versión');
+}
 
 export default function App() {
   const isMounted = useRef(true);
